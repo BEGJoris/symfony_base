@@ -1,0 +1,19 @@
+
+{% extends 'base.html.twig' %}
+{% block title %}Bienvenue sur CRUDcroustillant !{% endblock %}
+
+{% block content %}
+
+
+{% include '_header.html.twig' %}
+ 
+<main>
+    <h2>Bienvenue sur CRUDcroustillant !</h2>
+    <p>Découvrez nos délicieux burgers.</p>
+</main>
+ 
+<img src="{{ asset('../assets/logofedoracomplet.png') }}" alt="logoFedora" width="200">
+{% include '_footer.html.twig' %}
+
+
+{% endblock %}

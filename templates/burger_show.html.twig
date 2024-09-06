@@ -1,0 +1,7 @@
+{% extends 'base.html.twig' %}
+{% block title %}Burger - CRUDcroustillant{% endblock %}
+{% block body %}
+<div class="resultat" style="color: brown;">
+    {{ burger==null ? 'Ce burger n\'existe pas' : 'Le burger ' ~ burger.name ~ ' coute ' ~ burger.price ~ ' euros' }}
+</div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+{% block title %}Liste des Burgers - CRUDcroustillant{% endblock %}
+
+{% block content %}
+{% include '_header.html.twig' %}
+ 
+<main>
+    <h2>Liste des burgers</h2>
+    <p>Nos burgers sont préparés avec soin et passion.</p>
+</main>
+
+<ul>
+    {% for burger in burgers %}
+    <li>{{ burger.name }} - {{ burger.price }} </li>
+    {% endfor %}
+</ul>
+{% include '_footer.html.twig' %}
+{% endblock %}

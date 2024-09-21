@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\BurgerRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: BurgerRepository::class)]
@@ -23,17 +24,17 @@ class Burger
     private Pain $pain;
 
     #[ORM\ManyToMany(targetEntity: Oignon::class, inversedBy: 'burgers')]
-    private Oignon $oignon;
+    private Collection $oignon;
 
     #[ORM\ManyToMany(targetEntity: Sauce::class, inversedBy: 'burgers')]
-    private Sauce $sauce;
+    private Collection $sauce;
 
     #[ORM\OneToOne(cascade: ['persist', 'remove'])]
     private ?Image $image = null;
 
 
     #[ORM\OneToMany(targetEntity: Commentaire::class, mappedBy: 'burger')]
-    private Commentaire $commentaire;
+    private Collection $commentaire;
 
     public function getId(): ?int
     {

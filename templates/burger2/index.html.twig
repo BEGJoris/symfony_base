@@ -16,5 +16,10 @@
         <li>Your controller at <code>C:/Users/olise/Desktop/symfony_base/src/Controller/Burger2Controller.php</code></li>
         <li>Your template at <code>C:/Users/olise/Desktop/symfony_base/templates/burger2/index.html.twig</code></li>
     </ul>
+    <div>
+        {% for burger in burgers %}
+            <p>{{ burger.name }} - {{ burger.price }} </p>
+        {% endfor %}
+    </div>
 </div>
 {% endblock %}

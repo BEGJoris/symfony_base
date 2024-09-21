@@ -17,7 +17,7 @@ class Oignon
     private ?string $name = null;
 
     #[ORM\ManyToMany(targetEntity: Burger::class, mappedBy: 'oignons')]
-    private Burger $burger;
+    private Collection $burger;
 
 
 

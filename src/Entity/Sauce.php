@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\SauceRepository;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: SauceRepository::class)]
@@ -17,7 +18,7 @@ class Sauce
     private ?string $name = null;
 
     #[ORM\ManyToMany(targetEntity: Burger::class, mappedBy: 'sauces')]
-    private Burger $burger;
+    private Collection $burger;
     public function getId(): ?int
     {
         return $this->id;

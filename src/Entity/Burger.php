@@ -71,4 +71,52 @@ class Burger
 
         return $this;
     }
+
+    public function getPain(): ?Collection
+    {
+        return $this->pain;
+    }
+
+    public function setPain(Pain $pain): static
+    {
+        $this->pain = $pain;
+
+        return $this;
+    }
+
+    public function getOignon(): Collection
+    {
+        return $this->oignon;
+    }
+
+    public function setOignon(Collection $oignon): static
+    {
+        $this->oignon = $oignon;
+
+        return $this;
+    }
+
+    public function getSauce(): Collection
+    {
+        return $this->sauce;
+    }
+
+    public function setSauce(Collection $sauce): static
+    {
+        $this->sauce = $sauce;
+
+        return $this;
+    }
+
+    public function getImage(): ?Image
+    {
+        return $this->image;
+    }
+
+    public function setImage(Image $image): static
+    {
+        $this->image = $image;
+
+        return $this;
+    }
 }

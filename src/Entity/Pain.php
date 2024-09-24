@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PainRepository;
+
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity(repositoryClass: PainRepository::class)]
@@ -17,7 +19,7 @@ class Pain
     private ?string $name = null;
 
     #[ORM\OneToMany(targetEntity: Burger::class, mappedBy: 'pains')]
-    private Burger $burger;
+    private Collection $burger;
 
     public function getId(): ?int
     {

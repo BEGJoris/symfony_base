@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle sauce{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une nouvelle Sauce</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <button type="submit">Ajouter</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_sauce') }}">Retour à la liste des sauces</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvel Oignon{% endblock %}
+
+{% block body %}
+    <h1>Ajouter un Nouvel Oignon</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <button type="submit">Ajouter</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_oignon') }}">Retour à la liste des oignons</a>
+{% endblock %}

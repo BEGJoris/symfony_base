@@ -1,0 +1,14 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nouvelle image{% endblock %}
+
+{% block body %}
+    <h1>Ajouter une nouvelle image</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.name) }}
+    <button type="submit">Ajouter</button>
+    {{ form_end(form) }}
+
+    <a href="{{ path('app_image') }}">Retour à la liste des images></a>
+{% endblock %}

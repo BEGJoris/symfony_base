@@ -16,5 +16,12 @@
         <li>Your controller at <code>C:/Users/olise/Desktop/symfony_base/src/Controller/SauceController.php</code></li>
         <li>Your template at <code>C:/Users/olise/Desktop/symfony_base/templates/sauce/index.html.twig</code></li>
     </ul>
+    <div>
+        {% for sauce in sauces %}
+            <p>{{ sauce.name }} </p>
+        {% endfor %}
+    </div>
+    <button><a href="{{ path('sauce_new') }}">Ajouter une sauce</a></button>
+
 </div>
 {% endblock %}

@@ -21,5 +21,9 @@
             <p>{{ burger.name }} - {{ burger.price }} </p>
         {% endfor %}
     </div>
+    <button><a href="{{ path('burger2_add') }}">Ajouter un burger</a></button>
+    <button><a href="{{ path("burger2_top") }}">Voir les 5 meilleurs burgers</button>
+    <button><a href="{{ path("burger2_filter") }}">Voir les burgers avec oignons</button>
+    <button><a href="{{ path("burger2_without") }}">Voir les burgers sans oignon</button>
 </div>
 {% endblock %}

@@ -27,7 +27,8 @@ class ImageController extends AbstractController
     public function show($id, ImageRepository $imageRepository): Response
     {
         $image = $imageRepository->find($id);
-        return $this->render('image/show.html.twig', [
+        return $this->render('image/index.html.twig', [
+            'controller_name' => "ImageController",
             'image' => $image
         ]);
     }

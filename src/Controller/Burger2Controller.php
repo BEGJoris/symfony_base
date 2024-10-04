@@ -3,8 +3,12 @@
 namespace App\Controller;
 
 use App\Entity\Burger;
+use App\Entity\Oignon;
+use App\Entity\Pain;
+use App\Entity\Sauce;
 use App\Form\BurgerType;
 use App\Repository\BurgerRepository;
+use App\Repository\SauceRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
@@ -35,8 +39,10 @@ class Burger2Controller extends AbstractController
     }
 
     #[Route('/burger2/filter', name: 'burger2_filter')]
-    private function filter(BurgerRepository $burgerRepository): Response
+    public function filter(BurgerRepository $burgerRepository): Response
     {
+        $ingredient=new Oignon();
+        $ingredient->setName("Oignon");
         $burgers = $burgerRepository->findBurgerWithIngredient("Oignon");
         return $this->render('burger2/index.html.twig', [
             'burgers' => $burgers,
@@ -45,7 +51,7 @@ class Burger2Controller extends AbstractController
     }
 
     #[Route('/burger2/top', name: 'burger2_top')]
-    private function top(BurgerRepository $burgerRepository): Response
+    public function top(BurgerRepository $burgerRepository): Response
     {
         $burgers = $burgerRepository->findTopXBurgers(5);
         return $this->render('burger2/index.html.twig', [
@@ -54,9 +60,11 @@ class Burger2Controller extends AbstractController
         ]);
     }
     #[Route('/burger2/without', name: 'burger2_without')]
-    private function withoutIngredients(BurgerRepository $burgerRepository): Response
+    public function withoutIngredients(BurgerRepository $burgerRepository): Response
     {
-        $burgers = $burgerRepository->findBurgersWithoutIngredient("Oignon");
+        $sauce = new Sauce();
+        $sauce->setName("Mayonnaise");
+        $burgers = $burgerRepository->findBurgersWithoutIngredient($sauce);
         return $this->render('burger2/index.html.twig', [
             'burgers' => $burgers,
             "controller_name" => "Burger2Controller"
@@ -65,7 +73,7 @@ class Burger2Controller extends AbstractController
 
 
     #[Route('/burger2/with', name: 'burger2_with')]
-    private function withSomeIngredients(BurgerRepository $burgerRepository): Response{
+    public function withSomeIngredients(BurgerRepository $burgerRepository): Response{
         $burgers = $burgerRepository->findBurgersWithMinimumIngredients(2);
         return $this->render('burger2/index.html.twig', [
             'burgers' => $burgers,

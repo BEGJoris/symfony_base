@@ -72,7 +72,7 @@ class Burger
         return $this;
     }
 
-    public function getPain(): ?Collection
+    public function getPain(): Pain
     {
         return $this->pain;
     }

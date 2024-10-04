@@ -16,5 +16,12 @@
         <li>Your controller at <code>C:/Users/olise/Desktop/symfony_base/src/Controller/PainController.php</code></li>
         <li>Your template at <code>C:/Users/olise/Desktop/symfony_base/templates/pain/index.html.twig</code></li>
     </ul>
+    <div>
+        {% for pain in pains %}
+            <p>{{ pain.name }} </p>
+        {% endfor %}
+    </div>
+    <button><a href="{{ path('pain_new') }}">Ajouter un pain</a></button>
+
 </div>
 {% endblock %}

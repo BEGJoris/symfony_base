@@ -1,6 +1,23 @@
 {% extends 'base.html.twig' %}
-{% block title %}{{ parent() }} | Ajout Burger{% endblock %}
 
 {% block body %}
-    {{ form(form) }}
+    {{ form_start(form) }}
+    {# Autres champs du formulaire... #}
+
+    <div data-controller="sauce">
+        {{ form_row(form.sauce, {'attr': {'data-action': 'sauce#selectSauce'}}) }}
+        <p data-sauce-target="selected">Sélectionnez une sauce</p>
+    </div>
+
+    <div class="form-group" data-controller="preview"> <!-- Ajout du contrôleur ici -->
+        {{ form_label(form.image) }}
+        {{ form_widget(form.image, {'attr': {'data-preview-target': 'select', 'data-action': 'change->preview#preview'}}) }} <!-- Associer les actions -->
+        <div class="mt-3">
+            <img data-preview-target="preview" src="" alt="Image preview" style="max-width: 300px; display: block;" class="img-fluid"/>
+        </div>
+    </div>
+
+    <h1>Créer un Nouveau Burger</h1>
+
+    {{ form_end(form) }}
 {% endblock %}

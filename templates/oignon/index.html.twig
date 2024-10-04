@@ -16,5 +16,12 @@
         <li>Your controller at <code>C:/Users/olise/Desktop/symfony_base/src/Controller/OignonController.php</code></li>
         <li>Your template at <code>C:/Users/olise/Desktop/symfony_base/templates/oignon/index.html.twig</code></li>
     </ul>
+    <div>
+        {% for oignon in oignons %}
+            <p>{{ oignon.name }} </p>
+        {% endfor %}
+    </div>
+    <button><a href="{{ path('oignon_new') }}">Ajouter un oignon</a></button>
+
 </div>
 {% endblock %}

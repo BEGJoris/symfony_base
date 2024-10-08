@@ -19,16 +19,15 @@ class BurgerRepository extends ServiceEntityRepository
     //WHERE app.burger.id=app.burger_oignon.burger_id
 
     public function findBurgerWithIngredient(string $ingredient): array{
+        // Cette requete devra utiliser DQL pour sélectionner tous les burgers contenant un ingrédient donné
+
+        $entityManager = $this->getEntityManager();
+
         $query = $this->createQueryBuilder('b')
-            ->leftJoin('b.oignon', 'o')
-            ->leftJoin('b.sauce', 's')
-            ->where('o.id = :oignon OR s.id = :sauce')
-            ->setParameter('oignon', $ingredient->getId())
-            ->setParameter('sauce', $ingredient->getId())
-            ->getQuery()
-            ->getResult();
-        return $query;
-        }
+            ->innerJoin("b.{$ingredient}", 'o')
+            ->getQuery();
+        return $query->getResult();
+    }
 
         public function findTopXBurgers(int $limit){
 
@@ -52,17 +51,9 @@ class BurgerRepository extends ServiceEntityRepository
                     $table = "pain";
                     break;
             }
-            dump($table);
-
-
-//            if (empty($table)) {
-//                return [];
-//            }
             $query = $this->createQueryBuilder('b')
-                ->leftJoin("{$table}", "i")
-
-//                ->where("b.$table IS NULL OR b.$table NOT IN (:ingredient)")
-//                ->setParameter('ingredient', $ingredient->getName())
+                ->leftJoin("b.{$table}", "i")
+                ->where("i IS NULL")
                 ->getQuery();
 
             return $query->getResult();
@@ -70,14 +61,18 @@ class BurgerRepository extends ServiceEntityRepository
         }
 
         public function findBurgersWithMinimumIngredients(int $minIngredients){
-
-            return $this->createQueryBuilder('b')
-                ->leftJoin('b.ingredient', 'i')
-                ->groupBy('b')
-                ->having('COUNT(i) >= :minIngredients')
-                ->setParameter('minIngredients', $minIngredients)
-                ->getQuery()
-                ->getResult();
+            // Nuance avoir au moins 2 fois le même ingrédient par exemple avoir 2 type d'oignons
+            // ou avoir 2 ingrédients différents (sauce,oignon)
+            // On va traiter le 2ème cas
+            $query = $this->createQueryBuilder('b')
+                ->innerJoin("b.oignon", "o")
+                ->innerJoin("b.sauce", "s")
+                ->innerJoin("b.pain", "p")
+                ->groupBy('b.id')
+                ->having("COUNT(o) + COUNT(s) + COUNT(p) >= :min")
+                ->setParameter("min", $minIngredients)
+                ->getQuery();
+            return $query->getResult();
         }
 
     //    /**

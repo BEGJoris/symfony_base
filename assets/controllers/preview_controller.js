@@ -8,21 +8,7 @@ export default class extends Controller {
     }
 
     preview(event) {
-
         const imageUrl= this.selectTarget.options[this.selectTarget.selectedIndex].textContent;
-        console.log(imageUrl);
-        const selectedOption= this.selectTarget.options[this.selectTarget.selectedIndex];
-        console.log(selectedOption);
-
         this.previewTarget.src=imageUrl;
-
-
-
-
-
-
     }
-
-
-
 }

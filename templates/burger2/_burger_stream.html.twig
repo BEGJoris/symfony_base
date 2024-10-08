@@ -1,0 +1,7 @@
+{% block success_stream %}
+    <turbo-stream action="append" targets="#burger_list">
+        <template>
+            <p> {{ burger.name }} - {{ burger.price }} €</p>
+        </template>
+    </turbo-stream>
+{% endblock %}

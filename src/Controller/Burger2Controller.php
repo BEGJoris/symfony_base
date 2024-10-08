@@ -14,6 +14,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\UX\Turbo\TurboBundle;
 
 class Burger2Controller extends AbstractController
 {
@@ -41,9 +42,7 @@ class Burger2Controller extends AbstractController
     #[Route('/burger2/filter', name: 'burger2_filter')]
     public function filter(BurgerRepository $burgerRepository): Response
     {
-        $ingredient=new Oignon();
-        $ingredient->setName("Oignon");
-        $burgers = $burgerRepository->findBurgerWithIngredient("Oignon");
+        $burgers = $burgerRepository->findBurgerWithIngredient("oignon");
         return $this->render('burger2/index.html.twig', [
             'burgers' => $burgers,
             "controller_name" => "Burger2Controller"
@@ -85,14 +84,23 @@ class Burger2Controller extends AbstractController
     public function addBurger(Request $request, EntityManagerInterface $em): Response{
         $burger = new Burger();
         $form=$this->createForm(BurgerType::class,$burger);
+
         $form->handleRequest($request);
 
         if($form->isSubmitted() && $form->isValid()){
             $em->persist($burger);
             $em->flush();
 
+            if(TurboBundle::STREAM_FORMAT === $request->getPreferredFormat()){
+                $request->setRequestFormat(TurboBundle::STREAM_FORMAT);
+                return $this->renderBlock("burger2/_burger_stream.html.twig","success_stream",[
+
+
+                    "burger"=>$burger
+                ]);
+            }
             $this->addFlash("success","Le burger a bien été ajouté");
-            return $this->redirectToRoute("app_burger2");
+            return $this->redirectToRoute("app_burger2",[],Response::HTTP_SEE_OTHER);
         }
 
         return $this->render("burger2/new.html.twig",[

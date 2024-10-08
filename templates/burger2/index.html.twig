@@ -16,14 +16,16 @@
         <li>Your controller at <code>C:/Users/olise/Desktop/symfony_base/src/Controller/Burger2Controller.php</code></li>
         <li>Your template at <code>C:/Users/olise/Desktop/symfony_base/templates/burger2/index.html.twig</code></li>
     </ul>
-    <div>
+    <h1>Liste des burgers</h1>
+    <div id="burger_list">
         {% for burger in burgers %}
-            <p>{{ burger.name }} - {{ burger.price }} </p>
+            <p>{{ burger.name }} - {{ burger.price }} €</p>
         {% endfor %}
     </div>
     <button><a href="{{ path('burger2_add') }}">Ajouter un burger</a></button>
     <button><a href="{{ path("burger2_top") }}">Voir les 5 meilleurs burgers</button>
     <button><a href="{{ path("burger2_filter") }}">Voir les burgers avec oignons</button>
-    <button><a href="{{ path("burger2_without") }}">Voir les burgers sans oignon</button>
+    <button><a href="{{ path("burger2_without") }}">Voir les burgers sans sauce</button>
+    <button><a href="{{ path("burger2_with") }}">Voir les burgers qui contiennent au moins 2 ingrédients</button>
 </div>
 {% endblock %}

@@ -33,20 +33,21 @@ class BurgerType extends AbstractType
                 'class' => Oignon::class,
                 'choice_label' => 'name',
                 'multiple' => true,
+                'expanded' => true,
+                'by_reference' => false
+
             ])
             ->add('sauce', EntityType::class, [
                 'class' => Sauce::class,
                 'choice_label' => 'name',
                 'multiple' => true,
+                'expanded' => true,
+                'by_reference' => false
             ])
             ->add('image', EntityType::class, [
                 'class' => Image::class,
                 'choice_label' => 'url',
-                "placeholder" => "Sélectionner une image",
-                'attr' => [
-                    'data-image-preview-target' => 'select',
-                    'data-action' => 'change->image#preview'
-                ],
+                "placeholder" => "Sélectionner une image"
             ])
             ->add('save', SubmitType::class, [
                 'attr' => ['class' => 'save btn btn-primary'],

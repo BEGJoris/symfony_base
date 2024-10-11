@@ -15,7 +15,7 @@ export default class extends Controller {
         if (this.hasSelectedTarget) {
             this.selectedTarget.textContent = selectedSauces.length > 0
                 ? `Vous avez sélectionné : ${selectedSauces.join(', ')}`
-                : 'Sélectionnez une sauce';
+                : 'Selectionnez une sauce';
         }
     }
 }
